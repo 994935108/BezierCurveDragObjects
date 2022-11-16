@@ -22,6 +22,14 @@ public class HandRayFocusUpdate : MonoBehaviour
     private float mCurrentAngleY;
     private float mCurrentAngleX;
 
+    /// <summary>
+	/// 上一帧手的位置
+	/// </summary>
+	private Vector3 lastPos;
+
+
+    internal Vector3 handMoveDir;//{ get { } }
+
 
     void Start()
     {
@@ -109,7 +117,11 @@ public class HandRayFocusUpdate : MonoBehaviour
             UpdateState();
         }
     }
-
+    private void LateUpdate()
+    {
+        handMoveDir= transform.forward - lastPos;
+        lastPos = transform.forward;
+    }
     private void HoverEnter()
     {
         mIHandHoverInteractive.SendMessage("HoverEnter", this);
@@ -141,6 +153,8 @@ public class HandRayFocusUpdate : MonoBehaviour
             }
         }
     }
+
+   
     private void HoverExit()
     {
         mIHandHoverInteractive.SendMessage("HoverExit", this);

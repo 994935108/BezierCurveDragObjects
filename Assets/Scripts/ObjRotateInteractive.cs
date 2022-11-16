@@ -33,6 +33,7 @@ public class ObjRotateInteractive : IHandRayHoverInteractive
 
         if (mHand == null)
         {
+           
             mHand = hand;
             mHandEular = mHand.transform.eulerAngles;//记录按下时候的角度
            
